@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+vault_db.json
+server_master.key
+.venv/
+venv/
