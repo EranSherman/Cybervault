@@ -6,8 +6,6 @@ A client-server password management application built in Python demonstrating TC
 
 ## Project Requirements Verification
 
-This project fulfills all technical and architectural requirements specified in the assignment guidelines:
-
 - **Client-Server Architecture**: Built with Python's `socket` module over TCP/IP (`bind`, `listen`, `accept`, `send`, `recv`) with UTF-8 encoding and decoding.
 - **Multi-Threading**: Uses the `threading` module on the server to handle multiple concurrent clients simultaneously without blocking.
 - **Graphical User Interface (GUI)**: Built with `Tkinter` on both the client and server, utilizing `Label`, `Entry`, `Button`, `Text`, and `Listbox` components.
