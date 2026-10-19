@@ -1,13 +1,48 @@
-# CyberVault - Secure Cloud Password Manager (RSA-2048 + AES-256)
+CyberVault - Secure Cloud Password Manager
+A client-server password management application built in Python demonstrating TCP socket networking, multi-threading, Tkinter graphical user interfaces, and hybrid RSA-2048 and AES-256-CBC cryptography.
 
-A client-server password manager in Python demonstrating hybrid cryptography (`RSA` + `AES-CBC`), `PBKDF2HMAC` password hashing, multi-threaded TCP sockets, and `Tkinter` GUIs.
+Project Requirements Verification
+This project fulfills all technical and architectural requirements specified in the assignment guidelines:
 
-## Security Architecture
-1. **RSA-2048 Key Exchange (Handshake)**: Upon TCP connection, the server sends its RSA Public Key. The client generates a 256-bit AES session key, encrypts it using RSA-OAEP (SHA-256), and transmits it to the server.
-2. **AES-256-CBC Encrypted Transport**: Every request and response is encrypted with AES-256-CBC using a unique 16-byte random IV and PKCS7 padding.
-3. **PBKDF2HMAC Authentication & Encrypted Storage**: Master passwords are salted and hashed with 100,000 iterations of PBKDF2-HMAC-SHA256, and vault secrets are stored encrypted with AES-256 on disk (`vault_db.json`).
+Client-Server Architecture: Built with Python's socket module over TCP/IP (bind, listen, accept, send, recv) with UTF-8 encoding and decoding.
 
-## Running the Project
-1. Install dependencies: `pip install -r requirements.txt`
-2. Run the server: `python server.py`
-3. Run one or more clients: `python client.py`
+Multi-Threading: Uses the threading module on the server to handle multiple concurrent clients simultaneously without blocking.
+
+Graphical User Interface (GUI): Built with Tkinter on both the client and server, utilizing Label, Entry, Button, Text, and Listbox components.
+
+RSA Asymmetric Encryption: Uses 2048-bit RSA keys with OAEP and SHA-256 padding via the cryptography library to perform the initial handshake and securely exchange the session key.
+
+AES Symmetric Encryption: Uses a 256-bit (32-byte) AES session key in CBC mode with a random 16-byte Initialization Vector (IV) and PKCS7 padding to encrypt all traffic between the client and server, as well as stored vault data.
+
+Password Key Derivation: Implements PBKDF2HMAC with SHA-256 and random salts for master password authentication.
+
+How to Run the Project
+1. Clone the Repository
+Open PowerShell or Terminal and run:
+
+cd $HOME/Desktop
+git clone https://github.com/EranSherman/Cybervault.git
+cd Cybervault
+
+2. Install Dependencies
+   
+pip install -r requirements.txt
+
+4. Start the Server (Terminal 1)
+python server.py
+Keep this terminal and the server monitor window open.
+
+5. Start the Client (Terminal 2)
+Open a second terminal window and run:
+
+cd $HOME/Desktop/Cybervault
+python client.py
+
+Project Structure
+crypto_utils.py - RSA-2048, AES-256-CBC, PBKDF2HMAC, and socket framing functions.
+
+server.py - Multi-threaded TCP server, encrypted storage handler, and Tkinter admin monitor.
+
+client.py - Tkinter client GUI for user authentication and encrypted credential management.
+
+requirements.txt - Required Python dependencies (cryptography).
